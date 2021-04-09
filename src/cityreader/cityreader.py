@@ -42,12 +42,10 @@ def cityreader(cities = []):
 if __name__ == "__main__":
     cities = []
     cityreader(cities)
-    # print(cities, "main")
-    print(len(cities), "main")
 
     # Print the list of cities (name, lat, lon), 1 record per line.
     for c in cities:
-        print(c, "main")
+        print(c)
 
 # STRETCH GOAL!
 #
