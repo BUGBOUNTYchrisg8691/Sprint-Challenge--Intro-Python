@@ -24,6 +24,7 @@ import csv
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
 
+# cities = []
 
 def cityreader(cities = []):
     # TODO Implement the functionality to read from the 'cities.csv' file
@@ -39,14 +40,15 @@ def cityreader(cities = []):
 
     return cities
 
-if __name__ == "__main__":
-    cities = []
-    cityreader(cities)
 
-    # Print the list of cities (name, lat, lon), 1 record per line.
-    for c in cities:
-        print(c)
+### this replicates that bug
+# cities = cityreader()
+# this works
+# cityreader(cities)
 
+# Print the list of cities (name, lat, lon), 1 record per line.
+# for c in cities:
+#     print(c)
 # STRETCH GOAL!
 #
 # Allow the user to input two points, each specified by latitude and longitude.
@@ -79,19 +81,22 @@ if __name__ == "__main__":
 # TODO Get latitude and longitude values from the user
 
 
-# def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-#     # within will hold the cities that fall within the specified region
-#     within = []
-#
-#     # Go through each city and check to see if it falls within
-#     # the specified coordinates.
-#     # within = [city for city in cities if lat1 <= float(city.lat) <= lat2 and lon1 <= float(city.lon) <= lon2]
-#     for city in cities:
-#         if lat1 <= float(city.lat) <= lat2 and lon1 <= float(city.lon) <= lon2:
-#             within.append(city)
-#
-#     print(within)
-#     return within
-#
-#
-# print(cityreader_stretch(0.0, -0.0, 40.0, -112.0, cities))
+def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
+    # within will hold the cities that fall within the specified region
+    # Go through each city and check to see if it falls within
+    # the specified coordinates.
+
+    return [city for city in cities if lat1 >= city.lat >= lat2 and lon1 >= city.lon >= lon2 or lat1 <= city.lat <= lat2 and lon1 <= city.lon <= lon2]
+
+
+if __name__ == "__main__":
+    cities = cityreader()
+
+    # Print the list of cities (name, lat, lon), 1 record per line.
+    for c in cities:
+        print(c)
+
+    print("*** vvv STRETCH vvv ***")
+    stretch = cityreader_stretch(45, -100, 32, -120, cities)
+    for c in stretch:
+        print(c)
